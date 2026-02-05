@@ -1,0 +1,183 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const experience = [
+  {
+    title: "Data Analyst — Project Manager",
+    company: "Grey'Doers Synergy Limited",
+    location: "Abuja, Nigeria",
+    period: "Mar 2021 – Feb 2026",
+    highlights: [
+      "Delivered analytics for ₦5B+ Nigerian government programs (NASSP, GEEP, N-Power), directly informing policy decisions affecting millions of citizens",
+      "Led 25-person analytics team achieving 95% accuracy on beneficiary targeting—critical for ensuring poverty alleviation aid reached intended recipients",
+      "Architected GDPR-compliant data infrastructure handling 1M+ citizen records with zero breaches across 4+ years",
+      "Cut executive reporting time by 30% through automated PowerBI dashboards; trained 200+ public sector staff (85% adoption rate)"
+    ]
+  },
+  {
+    title: "Data Scientist",
+    company: "Nigerian Red Cross Society",
+    location: "Abuja, Nigeria",
+    period: "May 2024 – Dec 2025",
+    highlights: [
+      "Improved data reliability by 60% for UNICEF-funded education programs via ML quality framework that caught anomalies human review missed",
+      "Contributed to 25% improvement in maternal health intervention effectiveness through monitoring systems for British Red Cross programs",
+      "Produced policy briefs translating statistical findings on PPH (postpartum haemorrhage) for health officials, informing life-saving interventions"
+    ]
+  },
+  {
+    title: "Data Analyst",
+    company: "MAXBETng",
+    location: "Remote",
+    period: "Aug 2024 – Feb 2025",
+    highlights: [
+      "Increased customer retention by 20% through predictive models identifying at-risk users before they churned",
+      "Reduced onboarding drop-off by 25% through customer journey analysis pinpointing exact friction points",
+      "Partnered with product team to implement data-driven UI changes, decreasing user abandonment by 10%"
+    ]
+  },
+  {
+    title: "Database Administrator — ICT Officer",
+    company: "National Lottery Regulatory Commission",
+    location: "Abuja, Nigeria",
+    period: "May 2019 – Aug 2020",
+    highlights: [
+      "Led BI system implementation contributing to 10% revenue increase through improved analytics visibility",
+      "Maintained 100% regulatory compliance while improving decision-making speed by 25%"
+    ]
+  }
+];
+
+const certifications = [
+  { name: "Agentic AI Developer", issuer: "Ready Tensor" },
+  { name: "Machine Learning Specialization", issuer: "Stanford / DeepLearning.AI" },
+  { name: "Programming for Data Analytics", issuer: "Udacity Nanodegree" },
+  { name: "Google Data Analytics Professional", issuer: "Coursera" },
+  { name: "Data Science Professional Certificate", issuer: "DataLab Nigeria" },
+];
+---
+
+<Layout title="About | Ojey Egwuda">
+  <Header />
+  
+  <main class="flex-1 pt-16">
+    <!-- Header -->
+    <section class="container-custom py-20">
+      <div class="grid lg:grid-cols-3 gap-12">
+        <!-- Bio -->
+        <div class="lg:col-span-2">
+          <h1 class="text-4xl md:text-5xl font-display font-bold mb-6">About Me</h1>
+          
+          <div class="prose prose-invert max-w-none">
+            <p class="text-dark-300 text-lg leading-relaxed mb-6">
+              I'm an <span class="text-accent-400 font-medium">AI Developer and Data Scientist</span> based in Oxford, UK. I build intelligent systems using multi-agent architectures, RAG, and modern LLM frameworks—with 6 production applications now live.
+            </p>
+            
+            <p class="text-dark-400 leading-relaxed mb-6">
+              Over 5+ years, I've built data systems that directly impacted real people: reducing data errors from 40% to under 5% for <strong class="text-dark-200">UNICEF</strong> education tracking across Nigerian states, enabling the <strong class="text-dark-200">British Red Cross</strong> to reach 25% more maternal health beneficiaries through better geographic targeting, and managing GDPR-compliant databases for over 1 million citizens across government grant programs.
+            </p>
+            
+            <p class="text-dark-400 leading-relaxed mb-6">
+              I led analytics for ₦5B+ government social programs including Conditional Grant Scheme, GEEP, and N-Power—analysis that directly informed policy decisions affecting millions of citizens. Recently, I've built AI applications including multi-agent RAG systems, tax calculators with tool-enforced accuracy, and natural language data explorers.
+            </p>
+
+            <p class="text-dark-400 leading-relaxed">
+              I'm open to remote and global opportunities. If you're working on interesting AI/ML problems, I'd love to connect.
+            </p>
+          </div>
+          
+          <!-- CTAs -->
+          <div class="flex flex-wrap gap-4 mt-8">
+            <a href="mailto:ojonugwaegwuda@gmail.com" class="btn-primary">
+              Get in Touch
+            </a>
+            <a href="/Egwuda_Ojonugwa_CV.pdf" class="btn-secondary" download>
+              Download CV
+            </a>
+          </div>
+        </div>
+        
+        <!-- Quick Facts -->
+        <div class="space-y-6">
+          <div class="card p-6">
+            <h3 class="font-display font-semibold text-dark-200 mb-4">Quick Facts</h3>
+            <ul class="space-y-3 text-sm">
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-accent-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                <span class="text-dark-300">Oxford, United Kingdom</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-accent-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                <span class="text-dark-300">5+ years in Data & Analytics</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-accent-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                <span class="text-dark-300">AI projects with live demos</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-accent-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                </svg>
+                <span class="text-dark-300">MSc Information Management (2026)</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Certifications -->
+          <div class="card p-6">
+            <h3 class="font-display font-semibold text-dark-200 mb-4">Certifications</h3>
+            <ul class="space-y-3">
+              {certifications.map(cert => (
+                <li class="text-sm">
+                  <span class="text-dark-200 font-medium block">{cert.name}</span>
+                  <span class="text-dark-500">{cert.issuer}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="container-custom pb-20 border-t border-dark-800/50 pt-20">
+      <h2 class="section-title mb-12">Experience</h2>
+      
+      <div class="space-y-8">
+        {experience.map((job, index) => (
+          <div class="card p-6 md:p-8">
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-4">
+              <div>
+                <h3 class="text-lg font-display font-semibold text-dark-100">{job.title}</h3>
+                <p class="text-accent-400 font-medium">{job.company}</p>
+              </div>
+              <div class="text-sm text-dark-400 md:text-right">
+                <p>{job.period}</p>
+                <p>{job.location}</p>
+              </div>
+            </div>
+            <ul class="space-y-2">
+              {job.highlights.map(highlight => (
+                <li class="text-dark-400 text-sm flex items-start gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-accent-500/50 mt-2 flex-shrink-0"></span>
+                  {highlight}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

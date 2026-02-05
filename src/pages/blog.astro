@@ -1,0 +1,154 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const blogPosts = [
+  {
+    title: "From RAG to Agents: The Evolution of JapaPolicy AI",
+    description: "How I transformed a traditional RAG system into a multi-agent architecture. The journey from simple retrieval to intelligent query routing with 4 specialised agents.",
+    date: "2025",
+    tags: ["LangGraph", "Multi-Agent", "RAG", "Immigration"],
+    mediumUrl: "#",
+    readTime: "15 min read",
+  },
+  {
+    title: "Building JapaPolicy AI: A RAG System for UK Immigration",
+    description: "How I built a retrieval-augmented generation system to help people navigate 50+ complex GOV.UK immigration PDFs. Covering hybrid search, ChromaDB, and citation accuracy.",
+    date: "2025",
+    tags: ["RAG", "ChromaDB", "Google Gemini", "Immigration"],
+    mediumUrl: "https://medium.com/@ojonugwaegwuda/japapolicy-ai-building-a-rag-system-for-uk-immigration-queries-e24e2c032f62",
+    readTime: "12 min read",
+  },
+  {
+    title: "PocketRent: Building a Natural Language Rent Explorer Without an LLM",
+    description: "How I built a conversational rent price tool using regex and official ONS data. Sometimes the smartest AI solution is knowing when NOT to use an LLM.",
+    date: "2025",
+    tags: ["Python", "ONS Data", "Natural Language"],
+    mediumUrl: "https://medium.com/@ojonugwaegwuda/pocketrent-how-i-built-a-natural-language-rent-explorer-to-prepare-for-my-uk-move-7ec84306cf06",
+    readTime: "8 min read",
+  },
+  {
+    title: "FlightFinder AI: Why the Cheapest Flight Isn't Always the Best Deal",
+    description: "Building an intelligent flight search that weighs price, duration, stops, timing, and airline quality to find genuinely good deals.",
+    date: "2025",
+    tags: ["Python", "Amadeus API", "Ranking Algorithms"],
+    mediumUrl: "https://medium.com/@ojonugwaegwuda/why-cheapest-isnt-always-best-building-an-intelligent-flight-search-a41dfe27d625",
+    readTime: "8 min read",
+  },
+  {
+    title: "QuidWise: Teaching AI to Never Guess Your Tax Bill",
+    description: "How tool-enforced accuracy patterns prevent LLM hallucination on UK tax calculations. A deep dive into the 60% tax trap and why constraints enable trust.",
+    date: "2025",
+    tags: ["LangGraph", "ReAct", "UK Tax", "Tool Use"],
+    mediumUrl: "https://medium.com/@ojonugwaegwuda/building-a-uk-tax-calculator-that-never-hallucinates-c9a2348dea98",
+    readTime: "10 min read",
+  },
+  {
+    title: "The Neural Net: Building AI Pundits That Actually Disagree",
+    description: "Creating a multi-agent football podcast with distinct AI personalities. How to make agents argue convincingly using real data.",
+    date: "2025",
+    tags: ["LangGraph", "CrewAI", "Multi-Agent", "Football"],
+    mediumUrl: "#",
+    readTime: "10 min read",
+  },
+];
+---
+
+<Layout title="Blog | Ojey Egwuda">
+  <Header />
+  
+  <main class="flex-1 pt-16">
+    <!-- Header -->
+    <section class="container-custom py-20">
+      <h1 class="text-4xl md:text-5xl font-display font-bold mb-4">Blog</h1>
+      <p class="text-dark-400 text-lg max-w-2xl">
+        Technical deep-dives into the AI systems I build. Lessons learned, architectural decisions, and the occasional rant about tax calculations.
+      </p>
+      
+      <!-- Medium CTA -->
+      <a 
+        href="https://medium.com/@ojonugwaegwuda" 
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 mt-6 text-accent-400 hover:text-accent-300 transition-colors"
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
+        </svg>
+        Follow me on Medium
+      </a>
+    </section>
+
+    <!-- Blog Posts -->
+    <section class="container-custom pb-20">
+      <div class="space-y-6">
+        {blogPosts.map((post, index) => (
+          <a 
+            href={post.mediumUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="card card-glow block p-6 md:p-8 group"
+          >
+            <div class="flex flex-col md:flex-row md:items-start gap-4 md:gap-8">
+              <!-- Content -->
+              <div class="flex-1">
+                <div class="flex items-center gap-3 text-sm text-dark-500 mb-3">
+                  <span>{post.date}</span>
+                  <span>•</span>
+                  <span>{post.readTime}</span>
+                </div>
+                
+                <h2 class="text-xl md:text-2xl font-display font-semibold text-dark-100 mb-3 group-hover:text-accent-400 transition-colors">
+                  {post.title}
+                </h2>
+                
+                <p class="text-dark-400 leading-relaxed mb-4">
+                  {post.description}
+                </p>
+                
+                <div class="flex flex-wrap gap-2">
+                  {post.tags.map(tag => (
+                    <span class="tag text-xs">{tag}</span>
+                  ))}
+                </div>
+              </div>
+              
+              <!-- Arrow -->
+              <div class="hidden md:flex items-center justify-center w-12 h-12 rounded-xl bg-dark-800 text-dark-400 group-hover:bg-accent-500/10 group-hover:text-accent-400 transition-all flex-shrink-0">
+                <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Newsletter / CTA -->
+    <section class="container-custom pb-20">
+      <div class="card p-8 md:p-12 text-center bg-gradient-to-br from-accent-500/5 to-transparent">
+        <h2 class="text-2xl md:text-3xl font-display font-bold mb-4">Want to Discuss AI Systems?</h2>
+        <p class="text-dark-400 mb-8 max-w-xl mx-auto">
+          I'm always happy to chat about multi-agent architectures, RAG systems, or anything AI-related. Feel free to reach out.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="mailto:ojonugwaegwuda@gmail.com" class="btn-primary">
+            Get in Touch
+          </a>
+          <a 
+            href="https://www.linkedin.com/in/egwudaojonugwa/" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-secondary"
+          >
+            Connect on LinkedIn
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

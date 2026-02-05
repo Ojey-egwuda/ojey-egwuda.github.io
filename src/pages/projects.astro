@@ -1,0 +1,146 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const aiProjects = [
+  {
+    title: "JapaPolicy AI (Agentic)",
+    description: "Advanced multi-agent RAG system using LangGraph for complex immigration query routing. Features 4 specialised agents: Orchestrator (routes queries), Retrieval Agent (hybrid search), Policy Expert (interprets rules), and Eligibility Checker (deterministic calculations). Implements cross-encoder reranking for improved retrieval precision and tool-enforced accuracy for salary thresholds and ILR timeline calculations.",
+    tags: ["LangGraph", "Multi-Agent", "ChromaDB", "Google Gemini", "Cross-Encoder", "RAG"],
+    liveUrl: "https://japapolicy.streamlit.app/",
+    githubUrl: "https://github.com/Ojey-egwuda/JapaPolicy-AI-Agentic-",
+    featured: true,
+  },
+  {
+    title: "JapaPolicy AI (RAG)",
+    description: "Traditional RAG immigration assistant providing cited, accurate answers by querying 50+ official GOV.UK PDF documents. Combines semantic embeddings with BM25 keyword search for high-accuracy retrieval. Returns structured answers with source PDF and page number citations. Pre-built ChromaDB database ensures fast query response times.",
+    tags: ["RAG", "ChromaDB", "Google Gemini", "Hybrid Search", "Streamlit"],
+    liveUrl: "https://japapolicy-ai.streamlit.app/",
+    githubUrl: "https://github.com/Ojey-egwuda/JapaPolicy-AI-UK-Immigration-Policy-Assistant",
+  },
+  {
+    title: "QuidWise",
+    description: "UK personal finance assistant with HMRC-accurate tax calculations for 2024/25. Built with LangGraph ReAct agent pattern featuring tool-enforced accuracy—the AI must use calculation tools rather than guessing. Handles Personal Allowance taper, student loan stacking, salary sacrifice, and integrates Bank of England rates.",
+    tags: ["LangGraph", "OpenAI", "UK Tax", "ReAct Agent", "yfinance"],
+    liveUrl: "https://quidwise.streamlit.app/",
+    githubUrl: "https://github.com/Ojey-egwuda/QuidWise",
+  },
+  {
+    title: "FlightFinder AI",
+    description: "Intelligent flight search that finds the best deals, not just the cheapest. Multi-factor scoring algorithm weighs price, duration, stops, departure timing, and airline quality. Includes natural language explanations for recommendations and MCP server for AI assistant integration.",
+    tags: ["Python", "Amadeus API", "MCP Protocol", "Streamlit"],
+    liveUrl: "https://flightfinder-ai.streamlit.app/",
+    githubUrl: "https://github.com/Ojey-egwuda/FlightFinder-AI",
+  },
+  {
+    title: "PocketRent",
+    description: "Natural language UK rent price explorer using official ONS Private Rental Market Statistics. Ask questions like 'Compare Manchester vs Liverpool', 'Cheapest 2-bed in North West', or 'Areas under £700/month'. Covers 348 UK areas with monthly-updated government data. No LLM required—demonstrates knowing when NOT to over-engineer.",
+    tags: ["Python", "ONS Data", "Natural Language", "Streamlit", "Regex"],
+    liveUrl: "https://pocketrent.streamlit.app/",
+    githubUrl: "https://github.com/Ojey-egwuda/PocketRent",
+  },
+  {
+    title: "The Neural Net",
+    description: "AI-powered football podcast generator with multi-agent content creation. 6 specialised agents (Scout, Stats, Historian, Analyst, Writer, Censor) with supervisor orchestration. Integrates real-time statistics from SofaScore and news via Tavily. Features prediction tracking and accountability system.",
+    tags: ["LangGraph", "CrewAI", "SofaScore API", "Tavily", "Multi-Agent"],
+    liveUrl: "#",
+    githubUrl: "https://github.com/Ojey-egwuda/The-Neural-Net",
+  },
+];
+
+const mlProjects = [
+  {
+    title: "Telecom Customer Churn Forecasting",
+    description: "ML model predicting customer churn with 90% accuracy using logistic regression. Deployed via Streamlit app, enabling targeted retention strategies that reduced churn by 15%.",
+    tags: ["Python", "Scikit-learn", "Streamlit", "ML"],
+    liveUrl: "https://telcochurnpred.streamlit.app/",
+    githubUrl: "https://github.com/Ojey-egwuda/Telecom-Customer-Churn-Forecasting-using-Machine-Learning",
+  },
+  {
+    title: "Car Price Prediction App",
+    description: "XGBoost model for Nigerian used car price estimation. Built on scraped car listing data with Streamlit web deployment. Improved price prediction accuracy by 30%.",
+    tags: ["Python", "XGBoost", "Streamlit", "Web Scraping"],
+    liveUrl: "https://carpriceinsight.streamlit.app/",
+    githubUrl: "https://github.com/Ojey-egwuda/Car-Price-Prediction-App",
+  },
+  {
+    title: "House Rent Prediction",
+    description: "Predict house rental prices in Lagos, Nigeria using XGBoost. Features include location, bedrooms, and house type for accurate rent estimation.",
+    tags: ["Python", "XGBoost", "Streamlit"],
+    liveUrl: "https://ekohouserentpred.streamlit.app/",
+    githubUrl: "https://github.com/Ojey-egwuda/House-Rent-Forecasting-Using-Machine-Learning-",
+  },
+  {
+    title: "Air Quality Prediction — Abuja",
+    description: "Time series forecasting of PM2.5 levels in Abuja using 2M+ data points. ARIMA and SARIMAX models identify severe pollution periods for public health interventions.",
+    tags: ["Python", "ARIMA", "SARIMAX", "Time Series"],
+    githubUrl: "https://github.com/Ojey-egwuda/Predicting-Air-Quality-in-Abuja-Nigeria-using-Time-Series",
+  },
+  {
+    title: "Retirement Preparedness Clustering",
+    description: "K-means clustering analysis on 3M+ Federal Reserve SCF records, uncovering three distinct retirement preparedness segments for targeted financial product development.",
+    tags: ["Python", "Scikit-learn", "Clustering", "Plotly"],
+    githubUrl: "https://github.com/Ojey-egwuda/Clustering-Analysis-of-Retirement-Preparedness-with-Defined-Benefit--Plans",
+  },
+  {
+    title: "European Soccer Database Analysis",
+    description: "Comprehensive analysis of soccer data across 11 European professional leagues. SQL queries and Python for detailed statistical findings.",
+    tags: ["Python", "SQL", "Data Analysis", "Pandas"],
+    githubUrl: "https://github.com/Ojey-egwuda/European-Soccer-Database-Analysis",
+  },
+];
+---
+
+<Layout title="Projects | Ojey Egwuda">
+  <Header />
+  
+  <main class="flex-1 pt-16">
+    <!-- Header -->
+    <section class="container-custom py-20">
+      <h1 class="text-4xl md:text-5xl font-display font-bold mb-4">Projects</h1>
+      <p class="text-dark-400 text-lg max-w-2xl">
+        A collection of AI applications and machine learning projects. Each project includes live demos and source code.
+      </p>
+    </section>
+
+    <!-- AI Projects -->
+    <section class="container-custom pb-20">
+      <div class="flex items-center gap-3 mb-8">
+        <div class="w-10 h-10 rounded-xl bg-accent-500/10 flex items-center justify-center">
+          <svg class="w-5 h-5 text-accent-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <h2 class="text-2xl font-display font-semibold">AI & Agentic Systems</h2>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-6">
+        {aiProjects.map(project => (
+          <ProjectCard {...project} />
+        ))}
+      </div>
+    </section>
+
+    <!-- ML Projects -->
+    <section class="container-custom pb-20 border-t border-dark-800/50 pt-20">
+      <div class="flex items-center gap-3 mb-8">
+        <div class="w-10 h-10 rounded-xl bg-accent-500/10 flex items-center justify-center">
+          <svg class="w-5 h-5 text-accent-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+        </div>
+        <h2 class="text-2xl font-display font-semibold">Machine Learning & Data Science</h2>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {mlProjects.map(project => (
+          <ProjectCard {...project} />
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
