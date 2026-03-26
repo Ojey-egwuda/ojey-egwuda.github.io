@@ -3,101 +3,108 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import { aiProjects, mlProjects } from '../data/projects';
 
-const featuredProjects = [
-  {
-    title: "JapaPolicy AI (Agentic)",
-    description: "Multi-agent RAG system with 4 specialised agents (Orchestrator, Retrieval, Policy Expert, Eligibility Checker) using LangGraph. Features hybrid search with cross-encoder reranking and deterministic tools for salary/timeline calculations.",
-    tags: ["LangGraph", "Multi-Agent", "ChromaDB", "Google Gemini", "RAG"],
-    liveUrl: "https://japapolicy.streamlit.app/",
-    githubUrl: "https://github.com/Ojey-egwuda/JapaPolicy-AI-Agentic-",
-    featured: true,
-  },
-  {
-    title: "JapaPolicy AI (RAG)",
-    description: "Traditional RAG immigration assistant querying 50+ official GOV.UK PDFs. Combines semantic and BM25 keyword search for high-accuracy retrieval with cited answers including source PDF and page numbers.",
-    tags: ["RAG", "ChromaDB", "Google Gemini", "Hybrid Search", "Streamlit"],
-    liveUrl: "https://japapolicy-ai.streamlit.app/",
-    githubUrl: "https://github.com/Ojey-egwuda/JapaPolicy-AI-UK-Immigration-Policy-Assistant",
-  },
-  {
-    title: "QuidWise",
-    description: "UK personal finance assistant with HMRC-accurate tax calculations. Built with LangGraph ReAct agent pattern, featuring tool-enforced accuracy to prevent hallucination on numerical queries.",
-    tags: ["LangGraph", "OpenAI", "UK Tax", "ReAct Agent"],
-    liveUrl: "https://quidwise.streamlit.app/",
-    githubUrl: "https://github.com/Ojey-egwuda/QuidWise",
-  },
-];
+const featuredProjects = aiProjects.filter(p => p.featured);
 
 const skills = [
-  { category: "AI/ML", items: ["LangGraph", "LangChain", "CrewAI", "RAG Systems", "Multi-Agent"] },
-  { category: "Languages", items: ["Python", "SQL", "JavaScript", "R"] },
-  { category: "Infrastructure", items: ["AWS", "GCP", "Docker", "FastAPI", "Streamlit"] },
-  { category: "Data", items: ["ChromaDB", "PostgreSQL", "MongoDB", "PowerBI"] },
+  { category: "AI & Agents", items: ["LangGraph", "LangChain", "CrewAI", "Multi-Agent", "RAG Systems", "Context Engineering"] },
+  { category: "LLMs & Fine-tuning", items: ["LLaMA 3.1", "LoRA / PEFT", "Whisper STT", "Claude", "GPT-4", "Azure OpenAI"] },
+  { category: "Infra & Backend", items: ["FastAPI", "AWS EC2", "Docker", "GCP", "Streamlit", "LangSmith"] },
+  { category: "Data & Storage", items: ["MilvusDB", "ChromaDB", "PostgreSQL", "MongoDB", "PowerBI", "BM25 Search"] },
+];
+
+const stats = [
+  { value: "12+", label: "Projects shipped" },
+  { value: "7", label: "Live AI apps" },
+  { value: "5+", label: "Years in data" },
+  { value: "2M+", label: "Data points analysed" },
 ];
 ---
 
-<Layout title="Ojey Egwuda | AI Developer & Data Scientist">
+<Layout
+  title="Ojey Egwuda | AI Engineer & Data Scientist"
+  description="AI Engineer & Data Scientist building multi-agent RAG systems, LangGraph pipelines, and production ML apps. Based in Oxford, UK."
+>
   <Header />
-  
+
   <main class="flex-1 pt-16">
     <!-- Hero Section -->
     <section class="container-custom py-20 md:py-32">
       <div class="max-w-4xl">
-        <!-- Status badge -->
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-500/10 border border-accent-500/20 mb-6 animate-fade-in">
-          <span class="w-2 h-2 rounded-full bg-accent-400 animate-pulse"></span>
-          <span class="text-accent-400 text-sm font-medium">Open to remote & global opportunities</span>
+        <!-- Status badges -->
+        <div class="flex flex-wrap gap-3 mb-6 animate-fade-in">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-500/10 border border-accent-500/20">
+            <span class="w-2 h-2 rounded-full bg-accent-400 animate-pulse"></span>
+            <span class="text-accent-400 text-sm font-medium">Open to remote & global opportunities</span>
+          </div>
+          <a
+            href="/projects/context-engineer"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-dark-800/80 border border-dark-700 hover:border-accent-500/40 transition-colors group"
+          >
+            <svg class="w-3.5 h-3.5 text-dark-400 group-hover:text-accent-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+            <span class="text-dark-400 text-sm group-hover:text-dark-200 transition-colors">Currently building: <span class="text-dark-200 font-medium">Context-Engineer</span></span>
+          </a>
         </div>
-        
+
         <!-- Headline -->
         <h1 class="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-tight mb-6 animate-slide-up">
           Hi, I'm <span class="gradient-text">Ojey</span>
           <br />
           <span class="text-dark-300">I build intelligent systems</span>
         </h1>
-        
+
         <!-- Subheadline -->
         <p class="text-lg md:text-xl text-dark-400 leading-relaxed mb-8 max-w-2xl animate-slide-up stagger-1">
-          AI Developer & Data Scientist specialising in multi-agent architectures, RAG systems, and production ML applications. Building AI tools that solve real problems—from immigration policy navigation to personal finance and property analysis.
+          AI Engineer & Data Scientist specialising in multi-agent architectures, RAG systems, and production ML applications. I've shipped <strong class="text-dark-200">12+ live projects</strong> — from 5-agent immigration assistants to HMRC-accurate finance tools.
         </p>
-        
+
         <!-- CTAs -->
-        <div class="flex flex-wrap gap-4 animate-slide-up stagger-2">
+        <div class="flex flex-wrap gap-4 mb-16 animate-slide-up stagger-2">
           <a href="/projects" class="btn-primary">
             View Projects
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
             </svg>
           </a>
-          <a href="/about" class="btn-secondary">
-            About Me
-          </a>
+          <a href="/about" class="btn-secondary">About Me</a>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 animate-slide-up stagger-3">
+          {stats.map(stat => (
+            <div class="text-center md:text-left">
+              <div class="text-3xl md:text-4xl font-display font-bold gradient-text mb-1">{stat.value}</div>
+              <div class="text-dark-500 text-sm">{stat.label}</div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
 
     <!-- Featured Projects -->
-    <section class="container-custom py-20 border-t border-dark-800/50">
+    <section class="container-custom py-20 section-divider">
       <div class="flex items-end justify-between mb-12">
         <div>
           <h2 class="section-title">Featured Projects</h2>
           <p class="section-subtitle">AI applications solving real-world problems</p>
         </div>
         <a href="/projects" class="hidden md:flex items-center gap-2 text-accent-400 hover:text-accent-300 transition-colors font-medium">
-          View all projects
+          View all {aiProjects.length + mlProjects.length} projects
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
           </svg>
         </a>
       </div>
-      
+
       <div class="grid md:grid-cols-2 gap-6">
-        {featuredProjects.map((project, index) => (
+        {featuredProjects.map(project => (
           <ProjectCard {...project} />
         ))}
       </div>
-      
+
       <div class="mt-8 md:hidden">
         <a href="/projects" class="btn-secondary w-full justify-center">
           View all projects
@@ -106,12 +113,12 @@ const skills = [
     </section>
 
     <!-- Skills -->
-    <section class="container-custom py-20 border-t border-dark-800/50">
+    <section class="container-custom py-20 section-divider">
       <div class="mb-12">
         <h2 class="section-title">Technical Skills</h2>
         <p class="section-subtitle">Technologies I use to build intelligent systems</p>
       </div>
-      
+
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {skills.map(skill => (
           <div class="card p-6">
@@ -130,21 +137,21 @@ const skills = [
     </section>
 
     <!-- CTA Section -->
-    <section class="container-custom py-20 border-t border-dark-800/50">
+    <section class="container-custom py-20 section-divider">
       <div class="card p-8 md:p-12 text-center">
         <h2 class="text-2xl md:text-3xl font-display font-bold mb-4">Let's Build Something Together</h2>
         <p class="text-dark-400 mb-8 max-w-xl mx-auto">
           I'm always interested in challenging AI/ML problems. Whether you're building intelligent systems or need data-driven solutions, I'd love to hear from you.
         </p>
         <div class="flex flex-wrap justify-center gap-4">
-          <a href="mailto:ojonugwaegwuda@gmail.com" class="btn-primary">
+          <a href="/contact" class="btn-primary">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
             </svg>
             Get in Touch
           </a>
-          <a 
-            href="https://www.linkedin.com/in/egwudaojonugwa/" 
+          <a
+            href="https://www.linkedin.com/in/egwudaojonugwa/"
             target="_blank"
             rel="noopener noreferrer"
             class="btn-secondary"

@@ -2,9 +2,19 @@
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
+  ogUrl?: string;
 }
 
-const { title, description = "AI Developer & Data Scientist building intelligent systems" } = Astro.props;
+const {
+  title,
+  description = "AI Engineer & Data Scientist building intelligent systems — multi-agent RAG, LangGraph, and production ML applications.",
+  ogImage = "https://avatars.githubusercontent.com/u/Ojey-egwuda",
+  ogUrl = Astro.url.href,
+} = Astro.props;
+
+const siteUrl = "https://ojey-egwuda.github.io";
+const canonicalUrl = ogUrl || siteUrl;
 ---
 
 <!DOCTYPE html>
@@ -13,19 +23,43 @@ const { title, description = "AI Developer & Data Scientist building intelligent
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="author" content="Egwuda Ojonugwa" />
-    
+    <meta name="author" content="Ojonugwa Egwuda" />
+    <link rel="canonical" href={canonicalUrl} />
+
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Ojey Egwuda" />
+    <meta property="og:locale" content="en_GB" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    
+
     <title>{title}</title>
+
+    <!-- GoatCounter Analytics -->
+    <script data-goatcounter="https://ojey.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   </head>
   <body class="min-h-screen flex flex-col">
+    <!-- Aurora animated background -->
+    <div class="aurora" aria-hidden="true">
+      <div class="aurora-blob aurora-1"></div>
+      <div class="aurora-blob aurora-2"></div>
+      <div class="aurora-blob aurora-3"></div>
+      <div class="aurora-blob aurora-4"></div>
+    </div>
+    <div class="noise" aria-hidden="true"></div>
     <slot />
   </body>
 </html>
@@ -33,3 +67,21 @@ const { title, description = "AI Developer & Data Scientist building intelligent
 <style is:global>
   @import '../styles/global.css';
 </style>
+
+<script>
+  // Scroll-triggered reveal
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    }),
+    { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+  );
+
+  document.querySelectorAll('.card, .section-title, .section-subtitle').forEach(el => {
+    el.classList.add('scroll-reveal');
+    observer.observe(el);
+  });
+</script>

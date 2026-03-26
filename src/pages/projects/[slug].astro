@@ -1,0 +1,210 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { allProjects } from '../../data/projects';
+
+export async function getStaticPaths() {
+  return allProjects.map(project => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const categoryLabel = project.category === 'ai' ? 'AI & Agentic Systems' : 'ML & Data Science';
+---
+
+<Layout
+  title={`${project.title} | Ojey Egwuda`}
+  description={project.description}
+  ogImage={project.image}
+  ogUrl={Astro.url.href}
+>
+  <Header />
+
+  <main class="flex-1 pt-16">
+    <!-- Breadcrumb -->
+    <div class="container-custom py-6">
+      <nav class="flex items-center gap-2 text-sm text-dark-500">
+        <a href="/" class="hover:text-accent-400 transition-colors">Home</a>
+        <span>/</span>
+        <a href="/projects" class="hover:text-accent-400 transition-colors">Projects</a>
+        <span>/</span>
+        <span class="text-dark-300">{project.title}</span>
+      </nav>
+    </div>
+
+    <!-- Hero -->
+    <section class="container-custom pb-16">
+      <div class="max-w-4xl">
+        <!-- Category + Featured badge -->
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="tag text-xs">{categoryLabel}</span>
+          {project.featured && <span class="tag tag-accent text-xs">Featured Project</span>}
+        </div>
+
+        <h1 class="text-3xl md:text-5xl font-display font-bold mb-4">{project.title}</h1>
+        <p class="text-dark-400 text-lg leading-relaxed mb-8 max-w-3xl">{project.fullDescription}</p>
+
+        <!-- Action buttons -->
+        <div class="flex flex-wrap gap-3 mb-10">
+          {project.liveUrl && project.liveUrl !== '#' && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+              </svg>
+              Live App
+            </a>
+          )}
+          {project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-secondary"
+            >
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              View on GitHub
+            </a>
+          )}
+        </div>
+
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-2">
+          {project.tags.map(tag => (
+            <span class="tag text-xs">{tag}</span>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Project image -->
+    {project.image && (
+      <section class="container-custom pb-16">
+        <div class="rounded-2xl overflow-hidden border border-dark-700/50 bg-dark-900">
+          <img
+            src={project.image}
+            alt={`${project.title} preview`}
+            class="w-full object-cover opacity-90 hover:opacity-100 transition-opacity"
+            loading="lazy"
+          />
+        </div>
+      </section>
+    )}
+
+    <!-- Stats -->
+    {project.stats && project.stats.length > 0 && (
+      <section class="container-custom pb-16">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {project.stats.map(stat => (
+            <div class="card p-6 text-center">
+              <div class="text-2xl md:text-3xl font-display font-bold gradient-text mb-1">{stat.value}</div>
+              <div class="text-dark-400 text-sm">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Case Study -->
+    <section class="container-custom pb-20">
+      <div class="max-w-3xl space-y-12">
+
+        <!-- The Challenge -->
+        {project.challenge && (
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                </svg>
+              </div>
+              <h2 class="text-xl font-display font-semibold">The Challenge</h2>
+            </div>
+            <p class="text-dark-300 leading-relaxed pl-11">{project.challenge}</p>
+          </div>
+        )}
+
+        <!-- The Solution -->
+        {project.solution && (
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-8 h-8 rounded-lg bg-accent-500/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-accent-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                </svg>
+              </div>
+              <h2 class="text-xl font-display font-semibold">The Solution</h2>
+            </div>
+            <p class="text-dark-300 leading-relaxed pl-11">{project.solution}</p>
+          </div>
+        )}
+
+        <!-- The Outcome -->
+        {project.outcome && (
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <h2 class="text-xl font-display font-semibold">The Outcome</h2>
+            </div>
+            <p class="text-dark-300 leading-relaxed pl-11">{project.outcome}</p>
+          </div>
+        )}
+
+        <!-- Key Highlights -->
+        {project.highlights && project.highlights.length > 0 && (
+          <div>
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-8 h-8 rounded-lg bg-accent-500/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-accent-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+                </svg>
+              </div>
+              <h2 class="text-xl font-display font-semibold">Key Highlights</h2>
+            </div>
+            <ul class="space-y-3 pl-11">
+              {project.highlights.map(highlight => (
+                <li class="flex items-start gap-3 text-dark-300">
+                  <span class="w-1.5 h-1.5 rounded-full bg-accent-400 mt-2 flex-shrink-0"></span>
+                  <span class="leading-relaxed">{highlight}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <!-- Navigation: back + next/prev -->
+    <section class="container-custom pb-20 section-divider pt-12">
+      <div class="flex items-center justify-between">
+        <a href="/projects" class="btn-secondary">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/>
+          </svg>
+          All Projects
+        </a>
+        <a href="/contact" class="btn-primary">
+          Discuss this project
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

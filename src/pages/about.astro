@@ -5,7 +5,29 @@ import Footer from '../components/Footer.astro';
 
 const experience = [
   {
-    title: "Data Analyst — Project Manager",
+    title: "AI/LLM Engineer",
+    company: "CogniX LTD",
+    location: "Remote",
+    period: "Feb 2026 – Present",
+    highlights: [
+      "Designing and implementing LLM-powered AI systems for a multilingual mental health platform — covering Whisper STT, language detection, RAG-based knowledge retrieval (MilvusDB), LLM response generation, and a safety/crisis escalation node",
+      "Fine-tuning LLaMA 3.1 with LoRA/PEFT for domain-specific mental health dialogue, reducing hallucination on clinical language",
+      "Building the full production stack: LangChain orchestration, FastAPI backend, AWS EC2 GPU infrastructure"
+    ]
+  },
+  {
+    title: "AI Engineer",
+    company: "Independent / Self-Employed",
+    location: "Oxford, UK",
+    period: "Oct 2025 – Present",
+    highlights: [
+      "Designing, developing, and deploying 6 production-grade AI systems — LLM-powered applications, RAG pipelines, and multi-agent orchestration with full ownership from architecture through to deployment, monitoring, and continuous improvement",
+      "Built and maintained evaluation frameworks to measure system performance and reliability — golden dataset construction, automated quality metrics, A/B testing, LangSmith observability, and feedback loops for systematic improvement",
+      "Optimising prompts across Claude, GPT-4, and Azure OpenAI for latency, cost, and output quality; implementing context engineering techniques for scalable, cost-efficient production AI behaviour"
+    ]
+  },
+  {
+    title: "Data Analyst / Project Manager",
     company: "Grey'Doers Synergy Limited",
     location: "Abuja, Nigeria",
     period: "Mar 2021 – Feb 2026",
@@ -39,7 +61,7 @@ const experience = [
     ]
   },
   {
-    title: "Database Administrator — ICT Officer",
+    title: "Database Administrator / ICT Officer",
     company: "National Lottery Regulatory Commission",
     location: "Abuja, Nigeria",
     period: "May 2019 – Aug 2020",
@@ -59,9 +81,12 @@ const certifications = [
 ];
 ---
 
-<Layout title="About | Ojey Egwuda">
+<Layout
+  title="About | Ojey Egwuda"
+  description="AI Engineer & Data Scientist based in Oxford, UK. Building production LLM systems at CogniX LTD and 6 live AI applications — multi-agent RAG, LangGraph, LoRA fine-tuning, and more."
+>
   <Header />
-  
+
   <main class="flex-1 pt-16">
     <!-- Header -->
     <section class="container-custom py-20">
@@ -69,28 +94,28 @@ const certifications = [
         <!-- Bio -->
         <div class="lg:col-span-2">
           <h1 class="text-4xl md:text-5xl font-display font-bold mb-6">About Me</h1>
-          
+
           <div class="prose prose-invert max-w-none">
             <p class="text-dark-300 text-lg leading-relaxed mb-6">
-              I'm an <span class="text-accent-400 font-medium">AI Developer and Data Scientist</span> based in Oxford, UK. I build intelligent systems using multi-agent architectures, RAG, and modern LLM frameworks with 6 production applications now live.
+              I'm an <span class="text-accent-400 font-medium">AI Engineer & Data Scientist</span> based in Oxford, UK. I currently build LLM-powered systems at <span class="text-dark-200 font-medium">CogniX LTD</span> for a multilingual mental health platform — Whisper speech-to-text, MilvusDB RAG retrieval, fine-tuned LLaMA 3.1 with LoRA/PEFT, crisis escalation logic, and a FastAPI backend on AWS EC2 GPU infrastructure.
             </p>
-            
+
             <p class="text-dark-400 leading-relaxed mb-6">
-              Over 5+ years, I've built data systems that directly impacted real people: reducing data errors from 40% to under 5% for <strong class="text-dark-200">UNICEF</strong> education tracking across Nigerian states, enabling the <strong class="text-dark-200">British Red Cross</strong> to reach 25% more maternal health beneficiaries through better geographic targeting, and managing GDPR-compliant databases for over 1 million citizens across government grant programs.
+              Alongside that, I independently design, deploy, and maintain <strong class="text-dark-200">6 production AI applications</strong> from a 5-agent UK immigration assistant (JapaPolicy AI) to an HMRC-accurate finance tool (QuidWise) to a context management middleware for long-running LLM agents (Context-Engineer). Each one comes with an evaluation framework: golden datasets, LangSmith observability, automated quality metrics, and feedback loops. I prompt across <strong class="text-dark-200">Claude, GPT-4, and Azure OpenAI</strong>, optimising for latency, cost, and output quality.
             </p>
-            
+
             <p class="text-dark-400 leading-relaxed mb-6">
-              I led analytics for ₦5B+ government social programs including Conditional Grant Scheme, GEEP, and N-Power analysis that directly informed policy decisions affecting millions of citizens. Recently, I've built AI applications including multi-agent RAG systems, tax calculators with tool-enforced accuracy, and natural language data explorers.
+              Before AI Engineering, I spent 5+ years in data. I led a 25-person analytics team managing GDPR-compliant databases for <strong class="text-dark-200">1M+ citizen records</strong> across Nigerian government grant programs (₦5B+). I built ML systems that reduced data errors from 40% to under 5% for <strong class="text-dark-200">UNICEF</strong> education tracking and helped the <strong class="text-dark-200">British Red Cross</strong> reach 25% more maternal health beneficiaries through better geographic targeting. That background shapes how I build AI systems today — I care about data quality, reliability, and real-world impact, not demos.
             </p>
 
             <p class="text-dark-400 leading-relaxed">
-              I'm open to remote and global opportunities. If you're working on interesting AI/ML problems, I'd love to connect.
+              I'm open to remote and global opportunities. If you're building serious AI systems, I'd love to connect.
             </p>
           </div>
-          
+
           <!-- CTAs -->
           <div class="flex flex-wrap gap-4 mt-8">
-            <a href="mailto:ojonugwaegwuda@gmail.com" class="btn-primary">
+            <a href="/contact" class="btn-primary">
               Get in Touch
             </a>
             <a href="/Ojey Egwuda CV.docx" class="btn-secondary" download>
@@ -98,7 +123,7 @@ const certifications = [
             </a>
           </div>
         </div>
-        
+
         <!-- Quick Facts -->
         <div class="space-y-6">
           <div class="card p-6">
@@ -115,13 +140,19 @@ const certifications = [
                 <svg class="w-5 h-5 text-accent-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                 </svg>
-                <span class="text-dark-300">5+ years in Data & Analytics</span>
+                <span class="text-dark-300">AI/LLM Engineer at CogniX LTD</span>
               </li>
               <li class="flex items-start gap-3">
                 <svg class="w-5 h-5 text-accent-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                 </svg>
-                <span class="text-dark-300">AI projects with live demos</span>
+                <span class="text-dark-300">6 production AI apps live</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-accent-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                </svg>
+                <span class="text-dark-300">LangGraph · LoRA/PEFT · RAG · MilvusDB</span>
               </li>
               <li class="flex items-start gap-3">
                 <svg class="w-5 h-5 text-accent-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -131,7 +162,7 @@ const certifications = [
               </li>
             </ul>
           </div>
-          
+
           <!-- Certifications -->
           <div class="card p-6">
             <h3 class="font-display font-semibold text-dark-200 mb-4">Certifications</h3>
@@ -149,18 +180,18 @@ const certifications = [
     </section>
 
     <!-- Experience -->
-    <section class="container-custom pb-20 border-t border-dark-800/50 pt-20">
+    <section class="container-custom pb-20 section-divider pt-20">
       <h2 class="section-title mb-12">Experience</h2>
-      
+
       <div class="space-y-8">
-        {experience.map((job, index) => (
+        {experience.map((job) => (
           <div class="card p-6 md:p-8">
             <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-4">
               <div>
                 <h3 class="text-lg font-display font-semibold text-dark-100">{job.title}</h3>
                 <p class="text-accent-400 font-medium">{job.company}</p>
               </div>
-              <div class="text-sm text-dark-400 md:text-right">
+              <div class="text-sm text-dark-400 md:text-right flex-shrink-0">
                 <p>{job.period}</p>
                 <p>{job.location}</p>
               </div>
